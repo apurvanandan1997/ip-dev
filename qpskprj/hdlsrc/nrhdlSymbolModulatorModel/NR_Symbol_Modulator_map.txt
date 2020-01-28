@@ -1,3 +1,0 @@
- --> NR_Symbol_Modulator_pkg
-nrhdlSymbolModulatorModel/NR Symbol Modulator/NR Symbol Modulator --> NR_Symbol_Modulator_block
-nrhdlSymbolModulatorModel/NR Symbol Modulator --> NR_Symbol_Modulator

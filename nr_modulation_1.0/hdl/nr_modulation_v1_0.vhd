@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
 entity nr_modulation_v1_0 is
@@ -26,28 +27,43 @@ entity nr_modulation_v1_0 is
 end nr_modulation_v1_0;
 
 architecture arch_imp of nr_modulation_v1_0 is
+	signal counter : std_logic_vector(3 downto 0) := (others => '0');
+	signal index : integer;
+	signal dibits : std_logic_vector(7 downto 0);
 
---    (to_signed(16#2d41#, 16), to_signed(-16#2d41#, 16));
 begin
-	s00_axis_tready <= m00_axis_tready;
+	m00_axis_tvalid <= s00_axis_tvalid;
 	m00_axis_tstrb <= (others => '1');
+	s00_axis_tready <= counter(0) and counter(1) and counter(2) and counter(3) and m00_axis_tready;
+	m00_axis_tlast <= s00_axis_tlast and counter(0) and counter(1) and counter(2) and counter(3) and m00_axis_tready;
+	index <= to_integer(unsigned(counter(3 downto 0)));
+	dibits <= s00_axis_tdata((index + 1)*8-1 downto index*8);
 
-	process(axis_aclk)
+	GEN_ROM: for I in 0 to 3 generate
+		with dibits((I+1)*2-1 downto I*2) select m00_axis_tdata((I+1)*32-1 downto I*32) <=
+			x"2D412D41" when "00",
+			x"2D41D2BF" when "01",
+			x"D2BF2D41" when "10",
+			x"D2BFD2BF" when "11",
+			x"2D412D41" when others;
+
+    end generate GEN_ROM;
+
+process(axis_aclk)
 	begin
 		if rising_edge(axis_aclk) then
-			if s00_axis_tvalid = '1' then
-				case  is
-					when <choice_1> =>
-						
-					when others =>
-						null;
-				end case;
+			if axis_aresetn = '0' then
+				counter <= (others => '0');
 
 			else
-				s00_axis_tdata <= s00_axis_tdata;
+				if s00_axis_tvalid = '1' then
+					counter <= counter + '1';
+				else
+					counter <= (others => '0');
+
+				end if;
 			end if;
 		end if;
 	end process;
-
 
 end arch_imp;

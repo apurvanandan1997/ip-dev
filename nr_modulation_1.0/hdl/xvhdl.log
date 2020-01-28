@@ -1,7 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/apurvan/BBU/ip_repo/nr_modulation_1.0/hdl/nr_modulation_v1_0.vhd" into library work
-INFO: [VRFC 10-3107] analyzing entity 'nr_modulation_v1_0'
-ERROR: [VRFC 10-4982] syntax error near 'is' [/home/apurvan/BBU/ip_repo/nr_modulation_1.0/hdl/nr_modulation_v1_0.vhd:39]
-ERROR: [VRFC 10-4982] syntax error near 'case' [/home/apurvan/BBU/ip_repo/nr_modulation_1.0/hdl/nr_modulation_v1_0.vhd:44]
-ERROR: [VRFC 10-3208] cannot update 'in' object 's00_axis_tdata' [/home/apurvan/BBU/ip_repo/nr_modulation_1.0/hdl/nr_modulation_v1_0.vhd:47]
-ERROR: [VRFC 10-4982] syntax error near 'if' [/home/apurvan/BBU/ip_repo/nr_modulation_1.0/hdl/nr_modulation_v1_0.vhd:49]
-INFO: [VRFC 10-3070] VHDL file '/home/apurvan/BBU/ip_repo/nr_modulation_1.0/hdl/nr_modulation_v1_0.vhd' ignored due to errors
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/apurvan/BBU/ip-dev/nr_modulation_1.0/hdl/qpskmod.vhd" into library work
+INFO: [VRFC 10-3107] analyzing entity 'qpsk_mod_n'
